@@ -1,0 +1,11 @@
+-r requirements.txt
+mccabe
+flake8
+pytest
+pep8-naming
+rope
+ipdb
+yapf
+lock-requirements
+pytest-voluptuous==1.2.0
+zest.releaser
