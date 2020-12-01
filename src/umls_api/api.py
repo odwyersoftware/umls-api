@@ -1,11 +1,15 @@
 import requests
 from lxml.html import fromstring
+from cachetools import cached, TTLCache
+
+TTL_7HRS = TTLCache(maxsize=2, ttl=25200)
 
 
 class Auth:
     def __init__(self, api_key):
         self._api_key = api_key
 
+    @cached(TTL_7HRS)
     def get_single_use_service_ticket(self):
         url = 'https://utslogin.nlm.nih.gov/cas/v1/api-key'
         headers = {
