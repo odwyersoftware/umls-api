@@ -30,6 +30,7 @@ setup(
     url='https://github.com/odwyersoftware/umls-api',
     license='Apache 2',
     long_description=readme + '\n\n' + history,
+    long_description_content_type='text/markdown',
     install_requires=install_requires,
     classifiers=[
         'Intended Audience :: Developers',
