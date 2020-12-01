@@ -1,6 +1,6 @@
 # umls-api
 
-Python client for https://documentation.uts.nlm.nih.gov/rest/home.html
+Python client for the UMLS REST API https://documentation.uts.nlm.nih.gov/rest/home.html
 
 ## Installation
 
