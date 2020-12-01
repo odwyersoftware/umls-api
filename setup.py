@@ -19,7 +19,7 @@ with open('HISTORY.md', 'r', encoding='utf-8') as hist_file:
 
 setup(
     name='umls-api',
-    version='0.1.0.dev0',
+    version='0.1.0',
     packages=find_packages('src', exclude=('tests',)),
     package_dir={'': 'src'},
     include_package_data=True,
