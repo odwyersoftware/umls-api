@@ -91,3 +91,11 @@ print(resp)
 If you wish to add support for other API endpoints on UMLS, they are very simple to add.
 
 Pull requests (with tests) are very welcome.
+
+## Running the tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest src/tests
+flake8
+```
