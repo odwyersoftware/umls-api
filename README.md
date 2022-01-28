@@ -16,32 +16,33 @@ Get CUI.
 import umls_api
 
 resp = umls_api.API(api_key='<UMLS_API_KEY_HERE>').get_cui(cui='C0007107')
-print(res)
+print(resp)
 {
-	'pageCount': 1,
-	'pageNumber': 1,
-	'pageSize': 25,
-	'result': {
-		'atomCount': 247,
-		'atoms': 'https://uts-ws.nlm.nih.gov/rest/content/2020AB/CUI/C0007107/atoms',
-		'attributeCount': 0,
-		'classType': 'Concept',
-		'cvMemberCount': 0,
-		'dateAdded': '09-30-1990',
-		'defaultPreferredAtom': 'https://uts-ws.nlm.nih.gov/rest/content/2020AB/CUI/C0007107/atoms/preferred',
-		'definitions': 'https://uts-ws.nlm.nih.gov/rest/content/2020AB/CUI/C0007107/definitions',
-		'majorRevisionDate': '06-25-2020',
-		'name': 'Malignant neoplasm of larynx',
-		'relationCount': 17,
-		'relations': 'https://uts-ws.nlm.nih.gov/rest/content/2020AB/CUI/C0007107/relations',
-		'semanticTypes': [{
-			'name': 'Neoplastic Process',
-			'uri': 'https://uts-ws.nlm.nih.gov/rest/semantic-network/2020AB/TUI/T191'
-		}],
-		'status': 'R',
-		'suppressible': False,
-		'ui': 'C0007107'
-	}
+    'pageCount': 1,
+    'pageNumber': 1,
+    'pageSize': 25,
+    'result': {
+        'atomCount': 247,
+        'atoms': 'https://uts-ws.nlm.nih.gov/rest/content/2020AB/CUI/C0007107/atoms',
+        'attributeCount': 0,
+        'classType': 'Concept',
+        'cvMemberCount': 0,
+        'dateAdded': '09-30-1990',
+        'defaultPreferredAtom': 'https://uts-ws.nlm.nih.gov/rest/content/2020AB/CUI/C0007107/atoms/preferred',
+        'definitions': 'https://uts-ws.nlm.nih.gov/rest/content/2020AB/CUI/C0007107/definitions',
+        'majorRevisionDate': '06-25-2020',
+        'name': 'Malignant neoplasm of larynx',
+        'relationCount': 17,
+        'relations': 'https://uts-ws.nlm.nih.gov/rest/content/2020AB/CUI/C0007107/relations',
+        'semanticTypes': [{
+            'name': 'Neoplastic Process',
+            'uri': 'https://uts-ws.nlm.nih.gov/rest/semantic-network/2020AB/TUI/T191'
+        }],
+        'status': 'R',
+        'suppressible': False,
+        'ui': 'C0007107'
+    }
+}
 ```
 
 Get TUI.
@@ -52,39 +53,63 @@ import umls_api
 resp = umls_api.API(api_key='<UMLS_API_KEY_HERE>').get_tui(cui='T047')
 print(resp)
 {
-	'pageCount': 1,
-	'pageNumber': 1,
-	'pageSize': 25,
-	'result': {
-		'abbreviation': 'dsyn',
-		'childCount': 2,
-		'classType': 'SemanticType',
-		'definition': 'A condition which alters or interferes with a '
-		'normal process, state, or activity of an organism. '
-		'It is usually characterized by the abnormal '
-		"functioning of one or more of the host's systems, "
-		'parts, or organs. Included here is a complex of '
-		'symptoms descriptive of a disorder.',
-		'example': 'NONE',
-		'name': 'Disease or Syndrome',
-		'nonHuman': 'NONE',
-		'semanticTypeGroup': {
-			'abbreviation': 'DISO',
-			'classType': 'SemanticGroup',
-			'expandedForm': 'Disorders',
-			'semanticTypeCount': 12
-		},
-		'treeNumber': 'B2.2.1.2.1',
-		'ui': 'T047',
-		'usageNote': 'Any specific disease or syndrome that is modified by '
-		'such modifiers as "acute", "prolonged", etc. will '
-		'also be assigned to this type. If an anatomic '
-		'abnormality has a pathologic manifestation, then it '
-		'will be given this type as well as a type from the '
-		"'Anatomical Abnormality' hierarchy, e.g., "
-		'"Diabetic Cataract" will be double-typed for this '
-		'reason.'
-	}
+    'pageCount': 1,
+    'pageNumber': 1,
+    'pageSize': 25,
+    'result': {
+        'abbreviation': 'dsyn',
+        'childCount': 2,
+        'classType': 'SemanticType',
+        'definition': 'A condition which alters or interferes with a '
+                      'normal process, state, or activity of an organism. '
+                      'It is usually characterized by the abnormal '
+                      "functioning of one or more of the host's systems, "
+                      'parts, or organs. Included here is a complex of '
+                      'symptoms descriptive of a disorder.',
+        'example': 'NONE',
+        'name': 'Disease or Syndrome',
+        'nonHuman': 'NONE',
+        'semanticTypeGroup': {
+            'abbreviation': 'DISO',
+            'classType': 'SemanticGroup',
+            'expandedForm': 'Disorders',
+            'semanticTypeCount': 12
+        },
+        'treeNumber': 'B2.2.1.2.1',
+        'ui': 'T047',
+        'usageNote': 'Any specific disease or syndrome that is modified by '
+                     'such modifiers as "acute", "prolonged", etc. will '
+                     'also be assigned to this type. If an anatomic '
+                     'abnormality has a pathologic manifestation, then it '
+                     'will be given this type as well as a type from the '
+                     "'Anatomical Abnormality' hierarchy, e.g., "
+                     '"Diabetic Cataract" will be double-typed for this '
+                     'reason.'
+    }
+}
+```
+
+Search term.
+
+```python
+import umls_api
+
+resp = umls_api.API(api_key='<UMLS_API_KEY_HERE>').search_term('Malignant neoplasm of larynx')
+print(resp)
+{
+    'pageSize': 25, 
+    'pageNumber': 1, 
+    'result': {
+        'classType': 'searchResults', 
+        'results': [
+            {
+                'ui': 'C0007107', 
+                'rootSource': 'MTH', 
+                'uri': 'https://uts-ws.nlm.nih.gov/rest/content/2021AB/CUI/C0007107',
+                'name': 'Malignant neoplasm of larynx'
+            }
+        ]
+    }
 }
 ```
 
