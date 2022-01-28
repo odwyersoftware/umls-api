@@ -8,6 +8,7 @@ import umls_api
 UMLS_API_KEY = os.environ['UMLS_API_KEY']
 CUI = 'C0007107'
 TUI = 'T047'
+TERM = 'Malignant neoplasm of larynx'
 
 
 class TestAuth:
@@ -38,16 +39,13 @@ class TestAPI:
                 'dateAdded': '09-30-1990',
                 'defaultPreferredAtom': str,
                 'definitions': str,
-                'majorRevisionDate': '06-25-2020',
+                'majorRevisionDate': str,
                 'name': 'Malignant neoplasm of larynx',
                 'relationCount': int,
                 'relations': str,
                 'semanticTypes': [{
                     'name': 'Neoplastic Process',
-                    'uri': (
-                        'https://uts-ws.nlm.nih.gov/rest/semantic-network/'
-                        '2020AB/TUI/T191'
-                    )
+                    'uri': str,
                 }],
                 'status': str,
                 'suppressible': bool,
@@ -79,5 +77,25 @@ class TestAPI:
                 'treeNumber': str,
                 'ui': 'T047',
                 'usageNote': str
+            }
+        })
+
+    def test_get_term(self):
+        result = umls_api.API(api_key=UMLS_API_KEY).term_search(TERM, umls_api.SearchType.NORMALIZED_STRING)
+
+        assert result == S({
+            'pageNumber': int,
+            'pageSize': int,
+            'result': {
+                'classType': 'searchResults',
+                'results': [
+                    {
+                        'ui': 'C0007107',
+                        'rootSource': str,
+                        'name': 'Malignant neoplasm of larynx',
+                        'uri': str
+
+                    }
+                ]
             }
         })

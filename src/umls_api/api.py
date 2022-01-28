@@ -1,6 +1,7 @@
 import requests
 from lxml.html import fromstring
 from cachetools import cached, TTLCache
+from enum import Enum
 
 TTL_7HRS = TTLCache(maxsize=2, ttl=25200)
 
@@ -34,6 +35,16 @@ class Auth:
         return single_use_service_ticket
 
 
+class SearchType(Enum):
+    EXACT = 'exact'
+    WORDS = 'words'
+    LEFT_TRUNCATION = 'leftTruncation'
+    RIGHT_TRUNCATION = 'rightTruncation'
+    APPROXIMATE = 'approximate'
+    NORMALIZED_STRING = 'normalizedString'
+    NORMALIZED_WORDS = 'normalizedWords'
+
+
 class API:
     BASE_URL = 'https://uts-ws.nlm.nih.gov/rest'
 
@@ -47,6 +58,17 @@ class API:
 
     def get_tui(self, tui):
         url = (f'{self.BASE_URL}/semantic-network/{self._version}/TUI/{tui}')
+        return self._get(url=url)
+
+    def term_search(self, term, searchType=None):
+        url = (f'{self.BASE_URL}/search/{self._version}/?string={term}')
+        if searchType is not None:
+            # Type checking
+            if not isinstance(searchType, SearchType):
+                raise ValueError('searchType must be an instance of SearchType Enum')
+            else:
+                url = url + (f'/&searchType={searchType.value}')
+
         return self._get(url=url)
 
     def _get(self, url):
